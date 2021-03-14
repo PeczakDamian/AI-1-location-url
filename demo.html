@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>HiStory</title>
+</head>
+
+<body>
+	<header id="top">
+		<form name="hiBar" id="hiBar">
+			<input type="text" name="urlBar" />
+			<select name="history">
+				<option value="page1">page1</option>
+				<option value="page2">page2</option>
+				<option value="contact">contact</option>
+			</select>
+		</form>
+		<h1>Pusta strona</h1>
+		<p>Przykładowy akapit strony.</p>
+		<nav>
+			<a href="demo.html">Home Page</a>
+			<a href="#page1">Page 1</a>
+			<a href="#page2">Page 2</a>
+			<a href="#contact">Contact</a>
+		</nav>
+		<hr/>
+	</header>
+	<article id="content">
+		<h2>Podstawowy mechanizm</h2>
+		<p>Każde wykonanie żądania zmiany dokumentu poprzez wywołanie akcji na znaczniku hiperłącza jest realizowane
+			jako wysłanie do serwera Web żądania nowego zasobu oraz zmiany adresu URL lokalizującego zasób.</p>
+		<p>Na podobnej zasadzie działa mechanizm przenoszenia (widoku dokumentu) w obrębie dokumentu przy użyciu
+			adresacji wewnętrznej. Używamy do tego celu pary znaczników A: jeden z atrybutem HREF i adresem lokalnym
+			poprzedzonym znakiem #, a drugi z kotwicą (punktem docelowym) zawierającym atrybut ID oraz nazwę/etykietę
+			kotwicy odpowiadającej adresowi lokalnemu z atrybutu HREF (jednak bez znaku #).</p>
+		<p>Efektem nawigacji po adresach wewnątrz dokumentu będzie przeniesienie widoku do innnego fragmentu treści bez
+			wykonywania żądania do serwera Web, a co za tym idzie bez zmiany wyświetlanego dokumentu, jednak ze zmianą
+			adresu URL zapamiętywanego w historii przeglądania.</p>
+		<h2>Strony i aplikacje AJAX</h2>
+		<p>Wraz z rozwojem technologii Webowych pojawiła się możliwość zmiany/ładowania treści i zasobów zdalnych z
+			serwera Web bez konieczności przeładowywania całego dokumentu. Wystarczyło wskazać adres zasobu lub skrypt
+			pobierajacy treść oraz wskazać kontener w dokumencie, do którego należy załadować pobrany asynchronicznie
+			zasób.</p>
+		<p>Świat wirtualny zrobił kilka kroków do przodu, i nagle jeden w tył. Problemem stało się lokalizowanie i
+			identyfikowanie takiej dynamicznie ładowanej treści. Szczególnie w kontekście robotów indeksujących zasoby
+			sieci Internet dla wyszukiwarek treści. Szybko pojawiło się kilka możliwości: część była zgodna z
+			opracowanymi standardami dla Sieci komputerowych, czy Technologii Web, część niestety jawnie łamała przyjęte
+			standardy wśród okrzyków radości i zadowolenia (często osób pseudo-technicznych).</p>
+		<p></p>
+		<h2>Rozwiązania URL dla dynamicznych zasobów</h2>
+		<p>Przede wszystki skorzystano z istniejących możliwości adresacji wewnętrznej, a więc użycie znaku # do
+			identyfikowania dynamicznie ładowanej treści. Dotychczas adres URL był taki samo jak bazowego statycznego
+			dokumentu, a nagle pozwalał na lokalizowanie dynamicznej treści zgodnie ze standardem URL. Dodatkowo
+			wprowadzono w przeglądarkach mechanizm integracji z historią przeglądanych adresów URL w przeglądarce:
+			History API.</p>
+		<p>Od tego momentu pojawiła się techniczna możliwość (nie zawsze implementowana), by do każdego działania AJAX,
+			czyli dynamicznego ładowania treści (rozumianego jako zmiany strony/dokumentu) dołączyć akcję modyfikacji
+			adresu URL rozpoznawaną przez historię przeglądarki jako przeładowanie strony - załadowanie innego
+			dokumentu.</p>
+		<p>Efektem takiego wpięcia się w mechanizmy historii jest nawigowanie pod dokumencie z dynamiczną treścią jak po
+			różnych dokumentach za pomocą przycisków nawigacyjnych WSTECZ oraz DALEJ, możliwość zapamiętania takiego
+			dynamicznie ładowanego artykułu jako zakładki, czy uchronienie odwiedzającego przed opuszczeniem witryny
+			(bazowy adres URL) pomimo przeklikania przez wiele (dynamicznie ładowanych) dokumentów.</p>
+		<h2>Dokumentacja</h2>
+		<p><u>History API</u></p>
+		<p>.length - sprawdza długość histori, czyli ile pozycji ona posiada w obecnej domenie</p>
+		<p>.forward() - przewija do przodu</p>
+		<p>.back() - przwija do tyłu</p>
+		<p>.go(n) - idzie do pozycji +/- n</p>
+		<p>.pushState(state,title,url)</p>
+		<p>.replaceState()</p>
+		<p>window.onpopstate - ilekroć wywoływana jest zmiana "dokumentu" (adresu URL) wywołaj jakiś obiekt</p>
+		<p>e.state.page</p>
+		<p><u>Location object</u></p>
+		<p>.hash - #fragment</p>
+		<p>.href - Location URL Input</p>
+		<p>.protocol - użyty protokół (http, https, file)</p>
+		<p>.pathname - ścieżka do wyświetlanego pliku/dokumentu</p>
+		<p>.reload()</p>
+		<p>.replace()</p>
+	</article>
+	<footer id="contact">
+		<a href="#top">Go to TOP</a>
+		<p>Copyright &copy; Petri Grzegorz</p>
+		<script src="hiBar.js"></script>
+	</footer>
+</body>
+
+</html>
